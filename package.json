@@ -11,6 +11,7 @@
     "@chenfengyuan/vue-countdown": "^1.1.5",
     "@syncfusion/ej2-vue-heatmap": "^18.3.35",
     "apexcharts": "^3.22.1",
+    "bootstrap-vue": "^2.18.1",
     "core-js": "^3.6.5",
     "leaflet": "^1.7.1",
     "vue": "^2.6.12",

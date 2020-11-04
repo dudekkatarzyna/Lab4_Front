@@ -2,115 +2,87 @@
   <div><!--
     <apexchart type="heatmap" height="350" :options="chartOptions" :series="series"></apexchart>
 -->
-    <Timer/>
-    <LeafletMap/>
+    <b-navbar type="dark" variant="dark">
+      <b-navbar-brand href="#">Katarzyna Dudek, Monika Pacura</b-navbar-brand>
+    </b-navbar>
+
+    <b-tabs content-class="mt-3">
+      <b-tab title="General" active>
+        <Timer @synchronize="synchronizeData"/>
+        <LeafletMap v-if="sensors_data.length!==0" :sensors_data="sensors_data"/>
+
+      </b-tab>
+      <b-tab title="Temperature"><p>Temperature</p></b-tab>
+      <b-tab title="Humidity"><p>Humidity</p></b-tab>
+      <b-tab title="Pollution"><p>Pollution</p></b-tab>
+      <b-tab title="Location"><p>Location</p></b-tab>
+    </b-tabs>
+
+
   </div>
 </template>
 
 <script>
 import LeafletMap from './map'
 import Timer from "./timer"
+
 export default {
 
 
   name: 'HelloWorld',
-  props: {
-    msg: String
-  },
+  props: {},
   components: {
-    LeafletMap,Timer
+    LeafletMap, Timer
   },
-  data: function () {
-    return {
-
-      series: [
+  data: () => ({
+    sensors_data: [],
+  }),
+  mounted() {
+    this.synchronizeData()
+  },
+  methods: {
+    synchronizeData ()  {
+      console.log("synchronize")
+      this.sensors_data = [
         {
-          name: "1",
-          data: [{
-            x: 1,
-            y: 22
-          }, {
-            x: 2,
-            y: 29
-          }, {
-            x: 3,
-            y: 13
-          }, {
-            x: 4,
-            y: 32
-          }]
+          id: 1,
+          SensorId: "s1",
+          Date_n_Time: "2020-11-04 12:20:12",
+          Temperature: -39.21,
+          Humidity: 51.48,
+          Pollution: 15.88,
+          Location: [-53.47175260980075, 107.50231155658761]
         },
         {
-          name: "2",
-          data: [{
-            x: '1',
-            y: 43
-          }, {
-            x: '2',
-            y: 10
-          }, {
-            x: '3',
-            y: 43
-          }, {
-            x: '4',
-            y: 2
-          }]
+          id: 2,
+          SensorId: "s1",
+          Date_n_Time: "2020-11-04 12:20:12",
+          Temperature: -39.21,
+          Humidity: 51.48,
+          Pollution: 15.88,
+          Location: [-53.47175260980075, 107.50231155658761]
+        },
+        {
+          id: 3,
+          SensorId: "s2",
+          Date_n_Time: "2020-11-04 12:20:12",
+          Temperature: -39.21,
+          Humidity: 51.48,
+          Pollution: 15.88,
+          Location: [-50.47175260980075, 98.50231155658761]
+        },
+        {
+          id: 4,
+          SensorId: "s3",
+          Date_n_Time: "2020-11-04 12:20:12",
+          Temperature: -39.21,
+          Humidity: 51.48,
+          Pollution: 15.88,
+          Location: [-52.47175260980075, 109.50231155658761]
         }
-      ],
-
-      chartOptions: {
-        chart: {
-          height: 350,
-          type: 'heatmap',
-        },
-        plotOptions: {
-          heatmap: {
-            shadeIntensity: 0.5,
-            radius: 0,
-            useFillColorAsStroke: true,
-            colorScale: {
-              ranges: [{
-                from: 0,
-                to: 1,
-                name: 'low',
-                color: '#00A100'
-              },
-                {
-                  from: 2,
-                  to: 4,
-                  name: 'medium',
-                  color: '#128FD9'
-                },
-                {
-                  from: 5,
-                  to: 7,
-                  name: 'high',
-                  color: '#FFB200'
-                },
-                {
-                  from: 8,
-                  to: 20,
-                  name: 'extreme',
-                  color: '#FF0000'
-                }
-              ]
-            }
-          }
-        },
-        dataLabels: {
-          enabled: false
-        },
-        stroke: {
-          width: 1
-        },
-        title: {
-          text: 'HeatMap Chart with Color Range'
-        },
-      },
-
-
+      ]
     }
-  },
+  }
 }
 </script>
 

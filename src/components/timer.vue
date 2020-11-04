@@ -10,7 +10,7 @@
       <countdown v-if="counting" :time="5000" @end="handleCountdownEnd">
         <template slot-scope="props">Fetch again {{ props.totalSeconds }} seconds later</template>
       </countdown>
-      <span v-else>Fetch Verification Code</span>
+      <span v-else>Force synchronization</span>
     </button>
 
   </div>
@@ -29,9 +29,12 @@ export default {
   components: {
     VueCountdown,
   },
-  methods:{
-    startCountdown:()=>{},
-    handleCountdownEnd:()=>{}
+  methods: {
+    startCountdown() {
+      this.$emit('synchronize')
+    },
+    handleCountdownEnd() {
+    }
   }
 }
 </script>
