@@ -100,7 +100,7 @@ export default {
 <style scoped>
 #leafletMap {
   height: 50vh;
-  width: 100vw;
   margin: 50px;
+
 }
 </style>
