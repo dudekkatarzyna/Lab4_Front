@@ -51,7 +51,8 @@ export default {
           Temperature: -39.21,
           Humidity: 51.48,
           Pollution: 15.88,
-          Location: [-53.47175260980075, 107.50231155658761]
+          Location: [50.06143, 19.93658],
+          Radius:50
         },
         {
           id: 2,
@@ -60,7 +61,9 @@ export default {
           Temperature: -39.21,
           Humidity: 51.48,
           Pollution: 15.88,
-          Location: [-53.47175260980075, 107.50231155658761]
+          Location: [50.06192, 19.93159],
+          Radius: 100
+
         },
         {
           id: 3,
@@ -69,7 +72,18 @@ export default {
           Temperature: -39.21,
           Humidity: 51.48,
           Pollution: 15.88,
-          Location: [-50.47175260980075, 98.50231155658761]
+          Location: [50.06340, 19.93250],
+          Radius: 50
+        },
+        {
+          id: 3,
+          SensorId: "s2",
+          Date_n_Time: "2020-11-04 12:20:12",
+          Temperature: -39.21,
+          Humidity: 51.48,
+          Pollution: 30,
+          Location: [50.06340, 19.93250],
+          Radius: 50
         },
         {
           id: 4,
@@ -77,8 +91,10 @@ export default {
           Date_n_Time: "2020-11-04 12:20:12",
           Temperature: -39.21,
           Humidity: 51.48,
-          Pollution: 15.88,
-          Location: [-52.47175260980075, 109.50231155658761]
+          Pollution: 19.88,
+          Location: [50.06143, 19.93352],
+          Radius: 50
+
         }
       ]
     }

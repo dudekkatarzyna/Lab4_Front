@@ -41,24 +41,46 @@ export default {
     $_drawMarkers() {
       const markers = []
       this.$props.sensors_data.forEach(record => {
-        const marker= L.marker(record.Location)
+        const marker = L.marker(record.Location)
+        const markerCircle = L.circle(record.Location, record.Radius, {
+          color: this.$_getColor(record.SensorId)
+        })
 
         marker.bindPopup(this.$_displayRecord(record));
         markers.push(marker);
+        markers.push(markerCircle);
       })
-     // L.control.layers(null, markers).addTo(this.map);
+      // L.control.layers(null, markers).addTo(this.map);
       console.log(markers)
       const featureGroup = L.featureGroup(markers).addTo(this.map);
       console.log(featureGroup)
       this.map.fitBounds(featureGroup.getBounds());
     },
-    $_displayRecord(record){
-      let data=""
-      Object.keys(record).forEach(key =>{
-        data+=key+": "+record[key]+"<br>"
+    $_displayRecord(record) {
+      let data = ""
+      Object.keys(record).forEach(key => {
+        data += key + ": " + record[key] + "<br>"
       })
       console.log(data)
       return data
+    },
+    $_getColor(sensorId) {
+      let avg = 0;
+      const sensorData = this.$props.sensors_data.filter(x => x.SensorId === sensorId)
+      if (sensorData.length == 1) avg = sensorData[0].Pollution
+      else
+        avg = sensorData.reduce((a, v, i) => (a.Pollution * i + v.Pollution) / (i + 1));
+
+      if (avg<13)
+          return "#00FF00"
+      else if (avg< 26)
+        return "#FFFF00"
+      else if(avg <39)
+        return "#FF8C00"
+      else if (avg< 52)
+          return "#B22222"
+      else
+        return "#800080"
     }
   }
 
