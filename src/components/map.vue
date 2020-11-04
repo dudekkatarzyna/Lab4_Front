@@ -47,6 +47,7 @@ export default {
         })
 
         marker.bindPopup(this.$_displayRecord(record));
+        markerCircle.bindPopup(this.$_displayPollutionData(record))
         markers.push(marker);
         markers.push(markerCircle);
       })
@@ -64,21 +65,30 @@ export default {
       console.log(data)
       return data
     },
-    $_getColor(sensorId) {
+    $_getAvgPollution(sensorId) {
       let avg = 0;
       const sensorData = this.$props.sensors_data.filter(x => x.SensorId === sensorId)
-      if (sensorData.length == 1) avg = sensorData[0].Pollution
+      if (sensorData.length === 1) avg = sensorData[0].Pollution
       else
         avg = sensorData.reduce((a, v, i) => (a.Pollution * i + v.Pollution) / (i + 1));
 
-      if (avg<13)
-          return "#00FF00"
-      else if (avg< 26)
+      return avg
+
+    },
+    $_displayPollutionData(record) {
+      return "Avg Pollution: " + this.$_getAvgPollution(record.SensorId) + "<br>"
+
+    },
+    $_getColor(sensorId) {
+      const avg = this.$_getAvgPollution(sensorId)
+      if (avg < 13)
+        return "#00FF00"
+      else if (avg < 26)
         return "#FFFF00"
-      else if(avg <39)
+      else if (avg < 39)
         return "#FF8C00"
-      else if (avg< 52)
-          return "#B22222"
+      else if (avg < 52)
+        return "#B22222"
       else
         return "#800080"
     }
@@ -91,5 +101,6 @@ export default {
 #leafletMap {
   height: 50vh;
   width: 100vw;
+  margin: 50px;
 }
 </style>

@@ -4,11 +4,13 @@
 -->
     <b-navbar type="dark" variant="dark">
       <b-navbar-brand href="#">Katarzyna Dudek, Monika Pacura</b-navbar-brand>
+      <b-navbar-nav class="ml-auto">
+        <Timer class="timer" @synchronize="synchronizeData"/>
+      </b-navbar-nav>
     </b-navbar>
 
     <b-tabs content-class="mt-3">
       <b-tab title="General" active>
-        <Timer @synchronize="synchronizeData"/>
         <LeafletMap v-if="sensors_data.length!==0" :sensors_data="sensors_data"/>
 
       </b-tab>
@@ -71,7 +73,7 @@ export default {
           Date_n_Time: "2020-11-04 12:20:12",
           Temperature: -39.21,
           Humidity: 51.48,
-          Pollution: 15.88,
+          Pollution: 60.88,
           Location: [50.06340, 19.93250],
           Radius: 50
         },
@@ -91,7 +93,7 @@ export default {
           Date_n_Time: "2020-11-04 12:20:12",
           Temperature: -39.21,
           Humidity: 51.48,
-          Pollution: 19.88,
+          Pollution: 9.88,
           Location: [50.06143, 19.93352],
           Radius: 50
 
@@ -104,21 +106,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
+.timer{
 
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
 }
 </style>
