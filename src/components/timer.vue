@@ -2,15 +2,12 @@
   <div>
 
 
-    <VueCountdown id="countdown" :time="time">
-      <template slot-scope="props">Sync in：{{ props.seconds }} seconds.
-      </template>
-    </VueCountdown>
-    <button type="button" class="btn btn-secondary" :disabled="counting" @click="forceSync">
-      <VueCountdown v-if="counting" :time="5000" @end="handleCountdownEnd">
-        <template slot-scope="props">Force sync in {{ props.totalSeconds }}s</template>
-      </VueCountdown>
-      <span v-else>Force sync</span>
+    <div id="countdown">
+      <span>Sync in：{{ countdown }} seconds.
+      </span>
+    </div>
+    <button type="button" class="btn btn-secondary" @click="forceSync">
+      Force sync
     </button>
 
   </div>
@@ -18,28 +15,42 @@
 </template>
 
 <script>
-import VueCountdown from '@chenfengyuan/vue-countdown';
 
 export default {
   name: "timer",
   data: () => ({
     counting: true,
-    time: 30* 1000
+    countdown: 30
 
   }),
-  components: {
-    VueCountdown,
+  components: {},
+  mounted() {
+    this.countDownTimer()
+
+  },
+  watch: {
+    'countdown': function (val) {
+      if (val === 0) {
+        this.forceSync()
+        this.countDownTimer()
+
+      }
+    }
   },
   methods: {
     forceSync: function () {
+      this.countdown = 30;
 
-      this.counting = true;
+
+
     },
-    handleCountdownEnd: function () {
-
-      this.counting = false;
-      this.time=30*1000
-
+    countDownTimer() {
+      if (this.countdown > 0) {
+        setTimeout(() => {
+          this.countdown -= 1
+          this.countDownTimer()
+        }, 1000)
+      }
     },
   }
 }
