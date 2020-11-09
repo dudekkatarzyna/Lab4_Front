@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="header-timer">
 
 
     <div id="countdown">
@@ -42,6 +42,8 @@ export default {
       this.countdown = 30;
 
 
+      this.$emit('synchronize')
+
 
     },
     countDownTimer() {
@@ -60,5 +62,15 @@ export default {
 
 span {
   color: white;
+}
+
+.header-timer{
+  display: flex;
+  padding-right: 20px;
+}
+#countdown{
+  align-items: center;
+  margin: auto;
+  padding-right: 20px;
 }
 </style>

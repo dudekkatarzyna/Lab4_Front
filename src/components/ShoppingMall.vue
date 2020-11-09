@@ -86,21 +86,22 @@ export default {
 <style scoped>
 
 .gallery {
+  display: grid;
   margin: 0 auto;
   margin-top: 50px;
-  width: 70vw;
-  height: 50vh;
+  width: 100%;
+  height: 100%;
   border: 5px solid black;
 }
 
 .custom-row {
   display: inline-flex;
   width: 100%;
-  height: 25%;
+  height: 120px;
 }
 
 .corridor {
-  height: 11.5%;
+  height: 40px;
 }
 
 .vertical-corridor {
